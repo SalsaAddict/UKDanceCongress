@@ -1,0 +1,11 @@
+﻿body {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.centre-vertical, td, th {
+    vertical-align: middle !important;
+}
+
+a.btn-nohref { cursor: pointer; }
+

@@ -1,0 +1,19 @@
+﻿<ng-include src="'tpls/ShopNavBarTop.html'"></ng-include>
+<div class="container">
+    <ng-include src="'tpls/BasketContent.html'" ng-init="Standalone=true"></ng-include>
+</div>
+<!-- Bottom NavBar -->
+<div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+        <div class="container-fluid">
+            <a href="#Shop" class="btn btn-primary navbar-btn pull-left" title="Continue Shopping">
+                <i class="fa fa-chevron-circle-left"></i>
+                Back
+            </a>
+            <a href="#Checkout" class="btn btn-success navbar-btn pull-right" title="Checkout">
+                <i class="fa fa-gbp"></i>
+                Checkout
+            </a>
+        </div>
+    </nav>
+</div>

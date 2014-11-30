@@ -1,0 +1,86 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <div class="pull-right">
+            <button type="button" class="btn btn-success btn-xs" title="Refresh Basket" ng-click="Basket.RecalculatePrice()">
+                <i class="fa fa-refresh"></i>
+            </button>
+            <button type="button" class="btn btn-danger btn-xs" title="Empty Basket" ng-click="Basket.Reset()">
+                <i class="fa fa-trash"></i>
+            </button>
+        </div>
+        <h4 class="panel-title" ng-show="!$s.Affiliate">Basket</h4>
+        <h4 class="panel-title" ng-show="$s.Affiliate">
+            {{$s.Affiliate.Name}}
+            <br />
+            <small>
+                <i class="fa" ng-class="Auth.Role().Icon"></i>
+                {{Auth.Role().Name}}
+            </small>
+        </h4>
+    </div>
+    <div class="panel-body" ng-show="Empty()">There are no items in your basket</div>
+    <table class="table table-condensed small" ng-show="!Empty()">
+        <thead>
+            <tr>
+                <th class="text-left">Description</th>
+                <th class="text-right">Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="Package in $s.Basket.Packages">
+                <td class="text-left">
+                    <a href="#Package/Edit/{{$index}}">
+                        {{Package.Package.Name}}
+                    </a>
+                </td>
+                <td class="text-right">£{{Package.Price.Subtotal | number: 2}}</td>
+                <td class="text-center">
+                    <a class="btn-nohref text-danger" title="Remove Package" ng-click="RemovePackage(Package)">
+                        <i class="fa fa-remove fa-lg"></i>
+                    </a>
+                </td>
+            </tr>
+            <tr ng-repeat="Pass in $s.Basket.Passes">
+                <td class="text-left">
+                    <a href="#Pass/Edit/{{$index}}">
+                        {{Pass.Forename}}
+                        {{Pass.Surname}}
+                        ({{Pass.Pass.Name}})
+                    </a>
+                </td>
+                <td class="text-right">£{{Pass.Price.Subtotal | number: 2}}</td>
+                <td class="text-center">
+                    <a class="btn-nohref text-danger" title="Remove Pass" ng-click="RemovePass(Pass)">
+                        <i class="fa fa-remove fa-lg"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr ng-show="Basket.Summary().Discount > 0">
+                <th class="text-left small">Discount</th>
+                <th class="text-right small text-danger">-£{{Basket.Summary().Discount | number: 2}}</th>
+                <td></td>
+            </tr>
+            <tr ng-show="Basket.Summary().Commission > 0">
+                <th class="text-left small">Group Organiser</th>
+                <th class="text-right small text-danger">-£{{Basket.Summary().Commission | number: 2}}</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="text-left">Total</th>
+                <th class="text-right">£{{Basket.Summary().Total | number: 2}}</th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="panel-footer clearfix hidden-xs hidden-sm">
+        <div class="pull-right">
+            <a href="#Checkout" class="btn btn-success btn-sm" title="Checkout" ng-disabled="Empty()">
+                <i class="fa fa-paypal"></i>
+                Checkout
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+﻿<ng-include src="'tpls/ShopNavBarTop.html'"></ng-include>
+<!-- Main Content -->
+<div class="container">
+    <!-- Product List -->
+    <div class="col-xs-12 col-md-7" ng-include="'tpls/Products.html'"></div>
+    <!-- Basket -->
+    <div class="col-md-5 hidden-sm hidden-xs" ng-include="'tpls/BasketContent.html'" ng-controller="BasketController"></div>
+</div>
+<!-- Bottom NavBar -->
+<div class="container-fluid visible-xs visible-sm">
+    <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+        <div class="container-fluid">
+            <a href="#Basket" class="btn btn-primary navbar-btn pull-right" title="View Basket">
+                <i class="fa fa-shopping-cart"></i>
+                Basket
+            </a>
+        </div>
+    </nav>
+</div>

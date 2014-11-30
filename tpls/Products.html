@@ -1,0 +1,59 @@
+﻿<div class="list-group">
+    <div class="list-group-item list-group-item-info">
+        <h4>
+            Package Deals
+            <br />
+            <small>including 3 nights accommodation</small>
+        </h4>
+    </div>
+    <div class="list-group-item">
+        <span class="text-success">
+            <i class="fa fa-gift fa-lg"></i>
+            <b>£{{(Auth.Role().Name == 'Group Organiser') ? 10 : 5}}</b> off each <b>Full Pass</b> when bought as part of a package deal
+        </span>
+    </div>
+    <div class="list-group-item" ng-repeat="Product in $s.Products.Packages">
+        <div class="media-left centre-vertical">
+            <a href="#Package/Add/{{$index}}" class="btn btn-primary" title="Add Package">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+        <div class="media-body">
+            <h4>
+                {{Product.Name}}
+                <br />
+                <small>{{Product.Description}}</small>
+                <small ng-show="Product.InfoUrl">
+                    <br />
+                    <a ng-href="{{Product.InfoUrl}}" target="_blank">
+                        <i class="fa fa-info-circle"></i>
+                        More Information
+                    </a>
+                </small>
+            </h4>
+        </div>
+    </div>
+    <div class="list-group-item list-group-item-info">
+        <h4>
+            Pass Only
+            <br />
+            <small>without accommodation</small>
+        </h4>
+    </div>
+    <div class="list-group-item" ng-repeat="Product in $s.Products.Passes">
+        <div class="media-left centre-vertical">
+            <a href="#Pass/Add/{{$index}}" class="btn btn-primary" title="Add Pass">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+        <div class="media-body">
+            <h4>
+                {{Product.Name}}
+                <br />
+                <small>{{Product.Description}}</small>
+                <br />
+                <small class="text-primary">£{{Product.CurrentPrice | number: 0}} per person</small>
+            </h4>
+        </div>
+    </div>
+</div>

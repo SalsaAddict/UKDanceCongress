@@ -1,0 +1,32 @@
+﻿<table class="table table-condensed small">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th class="text-right">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-show="Price().Accommodation > 0">
+            <td>Accommodation</td>
+            <td class="text-right">£{{Price().Accommodation | number: 2}}</td>
+        </tr>
+        <tr ng-show="Price().Passes > 0">
+            <td>Passes</td>
+            <td class="text-right">£{{Price().Passes | number: 2}}</td>
+        </tr>
+        <tr ng-show="Price().Dining > 0">
+            <td>Dining</td>
+            <td class="text-right">£{{Price().Dining | number: 2}}</td>
+        </tr>
+        <tr>
+            <td>Discount</td>
+            <td class="text-right">£{{Price().Discount | number: 2}}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Total</th>
+            <th class="text-right">£{{Price().Total | number: 2}}</th>
+        </tr>
+    </tfoot>
+</table>

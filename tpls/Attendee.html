@@ -1,0 +1,40 @@
+﻿<!-- Forename -->
+<div class="form-group form-group-sm">
+    <label for="Forename" class="col-xs-4 control-label">Forename</label>
+    <div class="col-xs-8">
+        <div class="input-group input-group-sm {{(form.Forename.$error.required) ? 'has-error' : 'has-success'}}">
+            <input type="text" class="form-control" id="Forename" name="Forename" placeholder="Forename" ng-model="Attendee.Forename" required />
+            <span class="input-group-addon">
+                <i class="fa {{(form.Forename.$error.required) ? 'fa-warning' : 'fa-check'}}"></i>
+            </span>
+        </div>
+    </div>
+</div>
+<!-- Surname -->
+<div class="form-group form-group-sm">
+    <label for="Surname" class="col-xs-4 control-label">Surname</label>
+    <div class="col-xs-8">
+        <div class="input-group input-group-sm {{(form.Surname.$error.required) ? 'has-error' : 'has-success'}}">
+            <input type="text" class="form-control" id="Surname" name="Surname" placeholder="Surname" ng-model="Attendee.Surname" required />
+            <span class="input-group-addon">
+                <i class="fa {{(form.Surname.$error.required) ? 'fa-warning' : 'fa-check'}}"></i>
+            </span>
+        </div>
+    </div>
+</div>
+<!-- Gender -->
+<div class="form-group form-group-sm">
+    <label for="Gender" class="col-xs-4 control-label">Gender</label>
+    <div class="col-xs-8">
+        <div class="input-group input-group-sm {{(form.Gender.$error.required) ? 'has-error' : 'has-success'}}">
+            <select class="form-control" id="Gender" name="Gender" ng-model="Attendee.Gender" ng-options="Gender as Gender.Description for Gender in $s.Genders track by Gender.Code" required>
+                <option value="">Please select&hellip;</option>
+            </select>
+            <span class="input-group-addon">
+                <i class="fa fa-warning" ng-show="form.Gender.$error.required"></i>
+                <i class="fa fa-male fa-lg" ng-show="Attendee.Gender.Code == 'M'"></i>
+                <i class="fa fa-female fa-lg" ng-show="Attendee.Gender.Code == 'F'"></i>
+            </span>
+        </div>
+    </div>
+</div>

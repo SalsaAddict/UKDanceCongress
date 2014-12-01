@@ -1,9 +1,4 @@
-﻿<tabset>
-<tab heading="Tab 1">Tab 1</tab>
-</tabset>
-<!--
-
-<ng-include src="'tpls/ShopNavBarTop.html'"></ng-include>
+﻿<ng-include src="'tpls/ShopNavBarTop.html'"></ng-include>
 <div class="container">
     <div class="col-sm-8 col-sm-push-2 col-md-6 col-md-push-3">
         <div class="panel panel-default">
@@ -23,18 +18,71 @@
                 </h4>
             </div>
             <div class="panel-body">
+                <form name="PackageForm" role="form" novalidate>
+                    <tabset>
+                        <tab ng-repeat="Attendee in Package.Attendees" active="Attendee.Active">
+                            <tab-heading class="h4" title="Guest {{$index + 1}} of {{Package.Attendees.length}}">
+                                <i class="fa fa-user"></i>
+                                <i class="fa fa-warning text-danger" ng-show="form.$invalid"></i>
+                                <i class="fa fa-check text-success" ng-show="!form.$invalid"></i>
+                            </tab-heading>
+                            <ng-form class="form-horizontal" name="form">
+                                <div class="row">
+                                    <div class="col-xs-8 col-xs-push-4 h4">
+                                        <i class="fa fa-user"></i>
+                                        {{$index + 1}} of {{Package.Attendees.length}}
+                                    </div>
+                                </div>
+                                <ng-include src="'tpls/Attendee.html'"></ng-include>
+                                <!-- Pass -->
+                                <div class="form-group form-group-sm">
+                                    <label for="Pass" class="col-xs-4 control-label">Pass</label>
+                                    <div class="col-xs-8">
+                                        <div class="input-group input-group-sm">
+                                            <select class=" form-control" id="Pass" name="Pass" ng-model="Attendee.Pass" ng-options="Pass as Pass.Name for Pass in $s.Products.Passes track by Pass.ID">
+                                                <option value="">None</option>
+                                            </select>
+                                            <span class="input-group-addon">
+                                                £{{Attendee.Pass.CurrentPrice || 0 | number: 2}}
+                                            </span>
+                                        </div>
+                                        <span class="help-block small">{{Attendee.Pass.Description || 'Access to Butlins facilities only'}}</span>
+                                    </div>
+                                </div>
+                                <!-- Dining -->
+                                <div class="form-group form-group-sm">
+                                    <label for="Dining" class="col-xs-4 control-label">Dining</label>
+                                    <div class="col-xs-8">
+                                        <div class="input-group input-group-sm">
+                                            <select class="form-control input-sm" id="Dining" name="Dining" ng-model="Attendee.Dining" ng-options="Dining as Dining.Name for Dining in $s.Products.Dining track by Dining.ID">
+                                                <option value="">None</option>
+                                            </select>
+                                            <span class="input-group-addon">
+                                                £{{Attendee.Dining.CurrentPrice || 0 | number: 2}}
+                                            </span>
+                                        </div>
+                                        <span class="help-block small">{{Attendee.Dining.Description || 'Self-catering'}}</span>
+                                    </div>
+                                </div>
+                            </ng-form>
+                            <button type="button" class="btn btn-danger btn-xs pull-right" title="Remove Guest" ng-click="RemoveGuest($index)" ng-show="Package.Attendees.length > Package.Package.Min">Remove Guest</button>
+                        </tab>
+                        <tab ng-click="AddGuest()" ng-show="Package.Attendees.length < Package.Package.Max" title="Add Guest">
+                            <tab-heading>
+                                <i class="fa fa-plus"></i>
+                            </tab-heading>
+                        </tab>
+                    </tabset>
+                </form>
             </div>
-
             <div class="panel-footer clearfix">
                 <div class="pull-left" ng-include="'tpls/Price.html'"></div>
                 <div class="pull-right">
-                    <button type="button" class="btn btn-sm btn-default" ng-click="Cancel()">Cancel</button>
-                    <button type="button" class="btn btn-sm btn-primary" ng-click="Save()" ng-disabled="!IsValid()">Save</button>
+                    <a href="#Shop" class="btn btn-default">Cancel</a>
+                    <button type="button" class="btn btn-primary" ng-click="Save()" ng-disabled="PackageForm.$invalid">Save</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-    -->
+<iframe width="700" height="446" src="http://www.butlins.com/virtual-tour/bognor-regis/room-iframe.htm" frameborder="0" allowfullscreen="false"></iframe>

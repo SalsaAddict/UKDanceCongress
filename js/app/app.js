@@ -1,4 +1,4 @@
-var myApp = angular.module("myApp", ["ngRoute", "facebook", "myServices", "myControllers"]);
+var myApp = angular.module("myApp", ["ngRoute", "facebook", "myServices", "myControllers", "ui.bootstrap"]);
 
 myApp.config(function ($routeProvider, FacebookProvider) {
     $routeProvider

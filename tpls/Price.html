@@ -18,9 +18,9 @@
             <td>Dining</td>
             <td class="text-right">£{{Price().Dining | number: 2}}</td>
         </tr>
-        <tr>
+        <tr ng-show="Price().Discount > 0">
             <td>Discount</td>
-            <td class="text-right">£{{Price().Discount | number: 2}}</td>
+            <td class="text-right text-danger">-£{{Price().Discount | number: 2}}</td>
         </tr>
     </tbody>
     <tfoot>

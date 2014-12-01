@@ -36,6 +36,22 @@ myControllers.controller("PackageController", function ($location, $routeParams,
     $scope.Package = (!Edit) ? ShopService.CreatePackage($scope.$s.Products.Packages[$routeParams.Index]) : angular.copy($scope.$s.Basket.Packages[$routeParams.Index]);
     $scope.Price = function () { return ShopService.Price($scope.Package); };
 
+    $scope.AddGuest = function () {
+        var a = $scope.Package.Attendees;
+        if (a.length < $scope.Package.Package.Max) {
+            a.push(ShopService.CreateAttendee());
+            a[a.length - 1].Active = true;
+        };
+    };
+
+    $scope.RemoveGuest = function (i) {
+        var a = $scope.Package.Attendees;
+        if (a.length > $scope.Package.Package.Min) {
+            a.splice(i, 1);
+            a[i].Active = true;
+        };
+    };
+
     $scope.Save = function () {
         $scope.Package.Price = $scope.Price();
         if (!Edit) { $scope.$s.Basket.Packages.push($scope.Package); }

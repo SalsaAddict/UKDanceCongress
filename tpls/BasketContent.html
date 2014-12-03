@@ -11,11 +11,6 @@
         <h4 class="panel-title" ng-show="!$s.Affiliate">Basket</h4>
         <h4 class="panel-title" ng-show="$s.Affiliate">
             {{$s.Affiliate.Name}}
-            <br />
-            <small>
-                <i class="fa" ng-class="Auth.Role().Icon"></i>
-                {{Auth.Role().Name}}
-            </small>
         </h4>
     </div>
     <div class="panel-body" ng-show="Empty()">There are no items in your basket</div>

@@ -3,7 +3,7 @@
     <div class="col-sm-8 col-sm-push-2 col-md-6 col-md-push-3">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <span class="badge pull-right">£{{Price().Total | number: 2}}</span>
+                <span class="badge pull-right">£{{Price().Total / Package.Attendees.length | number: 0}} per person</span>
                 <h4 class="panel-title">
                     {{Package.Package.Name}}
                     <br />
@@ -11,9 +11,11 @@
                         {{Package.Package.Description}}
                         <br />
                         <span ng-show="Package.Package.Max == Package.Package.Min">
-                            sleeps {{Package.Package.Max}} {{(Package.Package.Max == 1) ? 'person' : 'people'}}
+                            sleeps <ng-pluralize count="Package.Package.Min" when="{'one': '1 person', 'other': '{} people'}"></ng-pluralize>
                         </span>
-                        <span ng-show="Package.Package.Max > Package.Package.Min">sleeps {{Package.Package.Min}} to {{Package.Package.Max}} people</span>
+                        <span ng-show="Package.Package.Max > Package.Package.Min">
+                            sleeps {{Package.Package.Min}} to {{Package.Package.Max}} people
+                        </span>
                     </small>
                 </h4>
             </div>
@@ -21,7 +23,7 @@
                 <form name="PackageForm" role="form" novalidate>
                     <tabset>
                         <tab ng-repeat="Attendee in Package.Attendees" active="Attendee.Active">
-                            <tab-heading class="h4" title="Guest {{$index + 1}} of {{Package.Attendees.length}}">
+                            <tab-heading class="h4" tooltip="Guest {{$index + 1}} of {{Package.Attendees.length}}">
                                 <i class="fa fa-user"></i>
                                 <i class="fa fa-warning text-danger" ng-show="form.$invalid"></i>
                                 <i class="fa fa-check text-success" ng-show="!form.$invalid"></i>
@@ -67,7 +69,7 @@
                             </ng-form>
                             <button type="button" class="btn btn-danger btn-xs pull-right" title="Remove Guest" ng-click="RemoveGuest($index)" ng-show="Package.Attendees.length > Package.Package.Min">Remove Guest</button>
                         </tab>
-                        <tab ng-click="AddGuest()" ng-show="Package.Attendees.length < Package.Package.Max" title="Add Guest">
+                        <tab ng-click="AddGuest()" ng-show="Package.Attendees.length < Package.Package.Max" tooltip="Add Guest">
                             <tab-heading>
                                 <i class="fa fa-plus"></i>
                             </tab-heading>
@@ -85,4 +87,3 @@
         </div>
     </div>
 </div>
-<iframe width="700" height="446" src="http://www.butlins.com/virtual-tour/bognor-regis/room-iframe.htm" frameborder="0" allowfullscreen="false"></iframe>

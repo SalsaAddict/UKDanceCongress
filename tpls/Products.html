@@ -9,7 +9,7 @@
     <div class="list-group-item">
         <span class="text-success">
             <i class="fa fa-gift fa-lg"></i>
-            <b>£{{(Auth.Role().Name == 'Group Organiser') ? 10 : 5}}</b> off each <b>Full Pass</b> when bought as part of a package deal
+            <b>£{{(Auth.IsAffiliate()==true) ? 10 : 5}}</b> off each <b>Full Pass</b> when bought as part of a package deal
         </span>
     </div>
     <div class="list-group-item" ng-repeat="Product in $s.Products.Packages">

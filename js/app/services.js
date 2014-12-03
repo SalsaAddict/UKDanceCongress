@@ -34,14 +34,7 @@ myServices.service("AuthService", ["$route", "$routeParams", "$localStorage", "$
         Login: function () { Facebook.login(function (authResponse) { _this.ProcessAuthResponse(authResponse); }); },
         Logout: function () { Facebook.logout(); delete $s.User; },
         IsOrganiser: function () { return ($s.User && $s.User.IsOrganiser == 1) ? true : false; },
-        IsAffiliate: function () { return ($s.User && $s.Affiliate && $s.User.Affiliate == $s.Affiliate.Code) ? true : false; },
-        Role: function () {
-            if ($s.User && $s.User.IsOrganiser == 1) return { Name: "Event Organiser", Icon: "fa-star" };
-            else if ($s.User && $s.User.Affiliate && $s.Affiliate && $s.User.Affiliate == $s.Affiliate.Code) return { Name: "Group Organiser", Icon: "fa-graduation-cap" };
-            else if ($s.Affiliate && $s.Affiliate.Code) return { Name: "Group Member", Icon: "fa-group" };
-            else if ($s.User) return { Name: "User", Icon: "fa-user" };
-            else return { Name: "Anonymous", Icon: null };
-        }
+        IsAffiliate: function () { return ($s.User && $s.Affiliate && $s.User.Affiliate == $s.Affiliate.Code) ? true : false; }
     };
 
 }]);

@@ -29,7 +29,7 @@
                         {{Package.Package.Name}}
                     </a>
                 </td>
-                <td class="text-right">£{{Package.Price.Subtotal | number: 2}}</td>
+                <td class="text-right">£{{Package.Price.Total | number: 2}}</td>
                 <td class="text-center">
                     <a class="btn-nohref text-danger" title="Remove Package" ng-click="RemovePackage(Package)">
                         <i class="fa fa-remove fa-lg"></i>
@@ -52,24 +52,8 @@
                 </td>
             </tr>
         </tbody>
-        <tfoot>
-            <tr ng-show="Basket.Summary().Discount > 0">
-                <th class="text-left small">Discount</th>
-                <th class="text-right small text-danger">-£{{Basket.Summary().Discount | number: 2}}</th>
-                <td></td>
-            </tr>
-            <tr ng-show="Basket.Summary().Commission > 0">
-                <th class="text-left small">Group Organiser</th>
-                <th class="text-right small text-danger">-£{{Basket.Summary().Commission | number: 2}}</th>
-                <td></td>
-            </tr>
-            <tr>
-                <th class="text-left">Total</th>
-                <th class="text-right">£{{Basket.Summary().Total | number: 2}}</th>
-                <th></th>
-            </tr>
-        </tfoot>
     </table>
+    <ng-include src="'tpls/Price.html'" />
     <div class="panel-footer clearfix hidden-xs hidden-sm">
         <div class="pull-right">
             <a href="#Checkout" class="btn btn-success btn-sm" title="Checkout" ng-disabled="Empty()">

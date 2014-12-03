@@ -67,7 +67,7 @@
                                     </div>
                                 </div>
                             </ng-form>
-                            <button type="button" class="btn btn-danger btn-xs pull-right" title="Remove Guest" ng-click="RemoveGuest($index)" ng-show="Package.Attendees.length > Package.Package.Min">Remove Guest</button>
+                            <button type="button" class="btn btn-danger btn-xs pull-right" tooltip="Remove Guest" ng-click="RemoveGuest($index)" ng-show="Package.Attendees.length > Package.Package.Min">Remove Guest</button>
                         </tab>
                         <tab ng-click="AddGuest()" ng-show="Package.Attendees.length < Package.Package.Max" tooltip="Add Guest">
                             <tab-heading>

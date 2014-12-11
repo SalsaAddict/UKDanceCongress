@@ -66,6 +66,15 @@ myServices.service("ShopService", ["$localStorage", "$http", "AuthService", func
         return Package;
     };
 
+    this.FullPassPackageDiscount = function () {
+        if (AuthService.Interface.IsAffiliate()) {
+            return 10;
+        }
+        else {
+            return 0;
+        };
+    };
+
     this.Price = function (Item) {
         var Accommodation = (Item.Package) ? parseFloat(Item.Package.CurrentPrice) : 0;
         var Attendees = (Item.Package) ? Item.Attendees : [Item];
@@ -74,7 +83,7 @@ myServices.service("ShopService", ["$localStorage", "$http", "AuthService", func
             var Attendee = Attendees[i];
             if (Attendee.Pass) { Passes += parseFloat(Attendee.Pass.CurrentPrice); };
             if (Attendee.Dining) { Dining += parseFloat(Attendee.Dining.CurrentPrice); };
-            if (Item.Package && Attendee.Pass && Attendee.Pass.Name == "Full Pass") { Discount += (AuthService.Interface.IsAffiliate()) ? 10 : 5 };
+            if (Item.Package && Attendee.Pass && Attendee.Pass.Name == "Full Pass") { Discount += this.FullPassPackageDiscount() };
         };
         var Subtotal = Accommodation + Passes + Dining;
         var Total = Subtotal - Discount;

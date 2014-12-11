@@ -28,6 +28,13 @@
                     <a href="#Package/Edit/{{$index}}">
                         {{Package.Package.Name}}
                     </a>
+                    <div ng-repeat="Attendee in Package.Attendees">
+                        &nbsp;
+                        {{Attendee.Forename}}
+                        {{Attendee.Surname}}
+                        ({{Attendee.Pass.Name || 'No Pass'}},
+                        {{Attendee.Dining.Name || 'No Dining'}})
+                    </div>
                 </td>
                 <td class="text-right">£{{Package.Price.Total | number: 2}}</td>
                 <td class="text-center">
@@ -44,7 +51,7 @@
                         ({{Pass.Pass.Name}})
                     </a>
                 </td>
-                <td class="text-right">£{{Pass.Price.Subtotal | number: 2}}</td>
+                <td class="text-right">£{{Pass.Price.Total | number: 2}}</td>
                 <td class="text-center">
                     <a class="btn-nohref text-danger" title="Remove Pass" ng-click="RemovePass(Pass)">
                         <i class="fa fa-remove fa-lg"></i>

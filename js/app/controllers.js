@@ -3,6 +3,7 @@
 myControllers.controller("ShopController", function ($scope, $localStorage, AuthService, ShopService) {
     $scope.Auth = AuthService.Interface;
     $scope.$s = $localStorage;
+    $scope.FullPassPackageDiscount = function () { return ShopService.FullPassPackageDiscount(); }
 });
 
 myControllers.controller("BasketController", function ($scope, $localStorage, AuthService, ShopService) {

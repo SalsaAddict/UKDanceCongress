@@ -34,6 +34,16 @@ myControllers.controller("BasketController", function ($scope, $localStorage, Au
         };
     };
 
+    $scope.RemovePass = function (Pass) {
+        var i = $scope.$s.Basket.Passes.indexOf(Pass);
+        $scope.$s.Basket.Passes.splice(i, 1);
+    };
+
+    $scope.RemovePackage = function (Package) {
+        var i = $scope.$s.Basket.Packages.indexOf(Package);
+        $scope.$s.Basket.Packages.splice(i, 1);
+    };
+
 });
 
 myControllers.controller("PassController", function ($location, $routeParams, $scope, $localStorage, AuthService, ShopService, Edit) {

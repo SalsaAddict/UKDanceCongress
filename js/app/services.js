@@ -48,20 +48,20 @@ myServices.service("ShopService", ["$localStorage", "$http", "AuthService", func
     $http.get("run.ashx?Products&Type=P").success(function (data) { $s.Products.Passes = data.Products });
     $http.get("run.ashx?Products&Type=D").success(function (data) { $s.Products.Dining = data.Products });
 
-    this.CreateAttendee = function (Product) {
+    this.CreateAttendee = function (Pass, Dining) {
         return {
             Forename: null,
             Surname: null,
             Gender: null,
-            Pass: (Product) ? Product : $s.Products.Passes[0],
-            Dining: null,
+            Pass: (Pass) ? Pass : $s.Products.Passes[0],
+            Dining: (Dining) ? Dining : $s.Products.Dining[0],
             Active: false
         };
     };
 
     this.CreatePackage = function (Product) {
         var Package = { Package: Product, Attendees: [] };
-        for (i = 0; i < Product.Min; i++) { Package.Attendees.push(this.CreateAttendee(null)); };
+        for (i = 0; i < Product.Min; i++) { Package.Attendees.push(this.CreateAttendee()); };
         Package.Attendees[0].Active = true;
         return Package;
     };
@@ -71,7 +71,7 @@ myServices.service("ShopService", ["$localStorage", "$http", "AuthService", func
             return 10;
         }
         else {
-            return 0;
+            return 10;
         };
     };
 

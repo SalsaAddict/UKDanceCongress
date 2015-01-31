@@ -42,6 +42,10 @@ myApp.config(function ($routeProvider, FacebookProvider) {
             controller: "PackageController",
             resolve: { Edit: function () { return true; } }
         })
+        .when("/Checkout", {
+            templateUrl: "tpls/Checkout.html",
+            controller: "CheckoutController"
+        })
         .otherwise({
             redirectTo: "/Shop"
         });

@@ -23,7 +23,7 @@
                 <form name="PackageForm" role="form" novalidate>
                     <tabset>
                         <tab ng-repeat="Attendee in Package.Attendees" active="Attendee.Active">
-                            <tab-heading class="h4" tooltip="Guest {{$index + 1}} of {{Package.Attendees.length}}">
+                            <tab-heading class="h4" title="Guest {{$index + 1}} of {{Package.Attendees.length}}">
                                 <i class="fa fa-user"></i>
                                 <i class="fa fa-warning text-danger" ng-show="form.$invalid"></i>
                                 <i class="fa fa-check text-success" ng-show="!form.$invalid"></i>
@@ -67,9 +67,9 @@
                                     </div>
                                 </div>
                             </ng-form>
-                            <button type="button" class="btn btn-danger btn-xs pull-right" tooltip="Remove Guest" ng-click="RemoveGuest($index)" ng-show="Package.Attendees.length > Package.Package.Min">Remove Guest</button>
+                            <button type="button" class="btn btn-danger btn-xs pull-right" title="Remove Guest" ng-click="RemoveGuest($index)" ng-show="Package.Attendees.length > Package.Package.Min">Remove Guest</button>
                         </tab>
-                        <tab ng-click="AddGuest()" ng-show="Package.Attendees.length < Package.Package.Max" tooltip="Add Guest">
+                        <tab ng-click="AddGuest()" ng-show="Package.Attendees.length < Package.Package.Max" title="Add Guest">
                             <tab-heading>
                                 <i class="fa fa-lg fa-plus"></i>
                             </tab-heading>

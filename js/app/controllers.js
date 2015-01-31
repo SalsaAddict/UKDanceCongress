@@ -51,7 +51,7 @@ myControllers.controller("PassController", function ($location, $routeParams, $s
     $scope.Auth = AuthService.Interface;
     $scope.$s = $localStorage;
 
-    $scope.Attendee = (!Edit) ? ShopService.CreateAttendee($scope.$s.Products.Passes[$routeParams.Index]) : angular.copy($scope.$s.Basket.Passes[$routeParams.Index]);
+    $scope.Attendee = (!Edit) ? ShopService.CreateAttendee($scope.$s.Products.Passes[$routeParams.Index], null) : angular.copy($scope.$s.Basket.Passes[$routeParams.Index]);
     $scope.Price = function () { return ShopService.Price($scope.Attendee); };
 
     $scope.Save = function () {
@@ -74,7 +74,7 @@ myControllers.controller("PackageController", function ($location, $routeParams,
     $scope.AddGuest = function () {
         var a = $scope.Package.Attendees;
         if (a.length < $scope.Package.Package.Max) {
-            a.push(ShopService.CreateAttendee());
+            a.push(ShopService.CreateAttendee(a[a.length - 1].Pass, a[a.length - 1].Dining));
             a[a.length - 1].Active = true;
         };
     };

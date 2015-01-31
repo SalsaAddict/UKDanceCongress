@@ -53,15 +53,15 @@ myServices.service("ShopService", ["$localStorage", "$http", "AuthService", func
             Forename: null,
             Surname: null,
             Gender: null,
-            Pass: (Pass) ? Pass : $s.Products.Passes[0],
-            Dining: (Dining) ? Dining : $s.Products.Dining[0],
+            Pass: Pass,
+            Dining: Dining,
             Active: false
         };
     };
 
     this.CreatePackage = function (Product) {
         var Package = { Package: Product, Attendees: [] };
-        for (i = 0; i < Product.Min; i++) { Package.Attendees.push(this.CreateAttendee()); };
+        for (i = 0; i < Product.Min; i++) { Package.Attendees.push(this.CreateAttendee($s.Products.Passes[0], $s.Products.Dining[0])); };
         Package.Attendees[0].Active = true;
         return Package;
     };

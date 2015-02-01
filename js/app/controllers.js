@@ -13,26 +13,7 @@ myControllers.controller("BasketController", function ($scope, $localStorage, Au
 
     $scope.Empty = function () { if ($scope.$s.Basket.Packages.length == 0 && $scope.$s.Basket.Passes.length == 0) return true; else return false; };
 
-    $scope.Price = function () {
-        var Items = $scope.$s.Basket.Passes.concat($scope.$s.Basket.Packages)
-        var Accommodation = 0, Passes = 0, Dining = 0, Subtotal = 0, Discount = 0, Total = 0
-        for (i = 0; i < Items.length; i++) {
-            Accommodation += parseFloat(Items[i].Price.Accommodation);
-            Passes += parseFloat(Items[i].Price.Passes);
-            Dining += parseFloat(Items[i].Price.Dining);
-            Subtotal += parseFloat(Items[i].Price.Subtotal);
-            Discount += parseFloat(Items[i].Price.Discount);
-            Total += parseFloat(Items[i].Price.Total);
-        };
-        return {
-            Accommodation: Accommodation,
-            Passes: Passes,
-            Dining: Dining,
-            Subtotal: Subtotal,
-            Discount: Discount,
-            Total: Total
-        };
-    };
+    $scope.Price = function () { return ShopService.Total(); };
 
     $scope.RemovePass = function (Pass) {
         var i = $scope.$s.Basket.Passes.indexOf(Pass);
@@ -43,6 +24,13 @@ myControllers.controller("BasketController", function ($scope, $localStorage, Au
         var i = $scope.$s.Basket.Packages.indexOf(Package);
         $scope.$s.Basket.Packages.splice(i, 1);
     };
+
+});
+
+myControllers.controller("CheckoutController", function ($scope, $localStorage, AuthService, ShopService) {
+
+    $scope.Auth = AuthService.Interface;
+    $scope.$s = $localStorage;
 
 });
 

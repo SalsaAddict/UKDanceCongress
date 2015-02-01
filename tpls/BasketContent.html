@@ -1,13 +1,5 @@
 ﻿<div class="panel panel-default">
     <div class="panel-heading clearfix">
-        <div class="pull-right">
-            <button type="button" class="btn btn-success btn-xs" title="Refresh Basket" ng-click="Basket.RecalculatePrice()">
-                <i class="fa fa-refresh"></i>
-            </button>
-            <button type="button" class="btn btn-danger btn-xs" title="Empty Basket" ng-click="Basket.Reset()">
-                <i class="fa fa-trash"></i>
-            </button>
-        </div>
         <h4 class="panel-title" ng-show="!$s.Affiliate">Basket</h4>
         <h4 class="panel-title" ng-show="$s.Affiliate">
             {{$s.Affiliate.Name}}
@@ -59,12 +51,17 @@
                 </td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <th class="text-left">Total</th>
+                <th class="text-right">£{{Price().Total | number: 2}}</th>
+                <th class="text-center"></th>
+            </tr>
+        </tfoot>
     </table>
-    <ng-include src="'tpls/Price.html'" />
-    <div class="panel-footer clearfix hidden-xs hidden-sm">
+    <div class="panel-footer clearfix" ng-hide="Empty()">
         <div class="pull-right">
-            <a href="#Checkout" class="btn btn-success btn-sm" title="Checkout" ng-disabled="Empty()">
-                <i class="fa fa-paypal"></i>
+            <a href="#Checkout" class="btn btn-success btn-sm" title="Checkout">
                 Checkout
             </a>
         </div>

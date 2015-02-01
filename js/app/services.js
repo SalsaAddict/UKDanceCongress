@@ -71,7 +71,7 @@ myServices.service("ShopService", ["$localStorage", "$http", "AuthService", func
             return 10;
         }
         else {
-            return 10;
+            return 0;
         };
     };
 
@@ -87,6 +87,27 @@ myServices.service("ShopService", ["$localStorage", "$http", "AuthService", func
         };
         var Subtotal = Accommodation + Passes + Dining;
         var Total = Subtotal - Discount;
+        return {
+            Accommodation: Accommodation,
+            Passes: Passes,
+            Dining: Dining,
+            Subtotal: Subtotal,
+            Discount: Discount,
+            Total: Total
+        };
+    };
+
+    this.Total = function () {
+        var Items = $s.Basket.Passes.concat($s.Basket.Packages)
+        var Accommodation = 0, Passes = 0, Dining = 0, Subtotal = 0, Discount = 0, Total = 0
+        for (i = 0; i < Items.length; i++) {
+            Accommodation += parseFloat(Items[i].Price.Accommodation);
+            Passes += parseFloat(Items[i].Price.Passes);
+            Dining += parseFloat(Items[i].Price.Dining);
+            Subtotal += parseFloat(Items[i].Price.Subtotal);
+            Discount += parseFloat(Items[i].Price.Discount);
+            Total += parseFloat(Items[i].Price.Total);
+        };
         return {
             Accommodation: Accommodation,
             Passes: Passes,

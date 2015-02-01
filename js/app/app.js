@@ -14,10 +14,6 @@ myApp.config(function ($routeProvider, FacebookProvider) {
             templateUrl: "tpls/Basket.html",
             controller: "BasketController"
         })
-        .when("/Pass", {
-            templateUrl: "tpls/Pass.html",
-            controller: "PassController"
-        })
         .when("/Pass/Add/:Index", {
             templateUrl: "tpls/Pass.html",
             controller: "PassController",
@@ -27,10 +23,6 @@ myApp.config(function ($routeProvider, FacebookProvider) {
             templateUrl: "tpls/Pass.html",
             controller: "PassController",
             resolve: { Edit: function () { return true; } }
-        })
-        .when("/Package", {
-            templateUrl: "tpls/Package.html",
-            controller: "PackageController"
         })
         .when("/Package/Add/:Index", {
             templateUrl: "tpls/Package.html",

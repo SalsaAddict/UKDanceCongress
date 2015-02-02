@@ -1,2 +1,50 @@
 ﻿<ng-include src="'tpls/ShopNavBarTop.html'"></ng-include>
-<p>Checkout</p>
+<div class="container">
+    <div class="col-sm-8 col-sm-push-2 col-md-6 col-md-push-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Your Details</h4>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form" name="form" novalidate>
+                    <!-- Forename -->
+                    <div class="form-group form-group-sm">
+                        <label for="Forename" class="col-xs-4 control-label">Forename</label>
+                        <div class="col-xs-8">
+                            <div class="input-group input-group-sm {{(Attendee.Forename) ? 'has-success' : 'has-error'}}">
+                                <input type="text" class="form-control" id="Forename" placeholder="Forename" ng-model="Attendee.Forename" />
+                                <span class="input-group-addon">
+                                    <i class="fa {{(Attendee.Forename) ? 'fa-check' : 'fa-warning'}}"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Surname -->
+                    <div class="form-group form-group-sm">
+                        <label for="Surname" class="col-xs-4 control-label">Surname</label>
+                        <div class="col-xs-8">
+                            <div class="input-group input-group-sm {{(Attendee.Surname) ? 'has-success' : 'has-error'}}">
+                                <input type="text" class="form-control" id="Surname" placeholder="Surname" ng-model="Attendee.Surname" />
+                                <span class="input-group-addon">
+                                    <i class="fa {{(Attendee.Surname) ? 'fa-check' : 'fa-warning'}}"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Email Address -->
+                    <div class="form-group form-group-sm">
+                        <label for="Email" class="col-xs-4 control-label">Email Address</label>
+                        <div class="col-xs-8">
+                            <div class="input-group input-group-sm {{(Attendee.Email) ? 'has-success' : 'has-error'}}">
+                                <input type="text" class="form-control" id="Email" placeholder="Email Address" ng-model="Attendee.Email" />
+                                <span class="input-group-addon">
+                                    <i class="fa {{(Attendee.Email) ? 'fa-check' : 'fa-warning'}}"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

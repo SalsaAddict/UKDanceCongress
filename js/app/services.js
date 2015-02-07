@@ -97,6 +97,14 @@ myServices.service("ShopService", ["$localStorage", "$http", "AuthService", func
         };
     };
 
+    this.RefreshPrices = function () {
+        window.alert("Refreshing");
+        var Items = $s.Basket.Passes.concat($s.Basket.Packages);
+        for (i = 0; i < items.length; i++) {
+            Items[i].Price = this.Price(Items[i]);
+        };
+    };
+
     this.Total = function () {
         var Items = $s.Basket.Passes.concat($s.Basket.Packages)
         var Accommodation = 0, Passes = 0, Dining = 0, Subtotal = 0, Discount = 0, Total = 0

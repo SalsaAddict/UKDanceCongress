@@ -1,5 +1,5 @@
 ﻿<!-- Top NavBar -->
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="AuthController">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <a class="navbar-brand" href="http://www.ukdancecongress.com" target="_blank">
@@ -10,11 +10,11 @@
                 <span class="navbar-text" ng-show="$s.User">
                     {{$s.User.Forename}}&nbsp;{{$s.User.Surname}}&nbsp;
                 </span>
-                <button type="button" class="btn btn-primary navbar-btn" title="Login" ng-click="Auth.Login()" ng-show="!($s.User)">
+                <button type="button" class="btn btn-primary navbar-btn" title="Login" ng-click="ShopLogin()" ng-show="!($s.User)">
                     <i class="fa fa-facebook-square"></i>
                     Login
                 </button>
-                <button type="button" class="btn btn-primary navbar-btn" title="Logout" ng-click="Auth.Logout()" ng-show="$s.User">
+                <button type="button" class="btn btn-primary navbar-btn" title="Logout" ng-click="ShopLogout()" ng-show="$s.User">
                     <i class="fa fa-facebook-square"></i>
                     Logout
                 </button>

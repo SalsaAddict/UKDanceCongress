@@ -1,5 +1,19 @@
 ﻿var myControllers = angular.module("myControllers", ["ngRoute", "ngStorage", "myServices"]);
 
+myControllers.controller("AuthController", function ($scope, $localStorage, AuthService, ShopService) {
+
+    $scope.ShopLogin = function () {
+        AuthService.Interface.Login();
+        ShopService.RefreshPrices();
+    };
+
+    $scope.ShopLogout = function () {
+        AuthService.Interface.Logout();
+        ShopService.RefreshPrices();
+    };
+
+});
+
 myControllers.controller("ShopController", function ($scope, $localStorage, AuthService, ShopService) {
     $scope.Auth = AuthService.Interface;
     $scope.$s = $localStorage;
